@@ -44,6 +44,10 @@ app.use('/Order', orderRoute);
 const userRoute = require('./Routes/userRoute')
 app.use('/user', userRoute)
 
+app.get('/', (req, res) => {
+  res.send("Server running")
+})
+
 function validateUser(req, res, next) {
   if (req.method === 'GET') {
     next();
