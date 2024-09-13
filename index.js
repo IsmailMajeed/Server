@@ -1,7 +1,8 @@
 const express = require('express')
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const app = express()
+const app = express();
+const path = require('path');
 const PORT = process.env.PORT || 4000;
 
 const allowedOrigins = ['https://admin-dashboard-e-commerce.netlify.app/', 'https://e-commerce-baroque-clone.netlify.app/'];
@@ -27,7 +28,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.use('/uploads', express.static('uploads'));
+// app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.set('secretKey', "e-commerce");
 
