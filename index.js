@@ -5,21 +5,22 @@ const app = express();
 const path = require('path');
 const PORT = process.env.PORT || 4000;
 
-const allowedOrigins = ['https://admin-dashboard-e-commerce.netlify.app/', 'https://e-commerce-baroque-clone.netlify.app/'];
+// const allowedOrigins = ['https://admin-dashboard-e-commerce.netlify.app/', 'https://e-commerce-baroque-clone.netlify.app/'];
 
-// CORS options ko configure karen
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-};
+// // CORS options ko configure karen
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true,
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 
 
 var bodyParser = require('body-parser')
