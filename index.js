@@ -1,13 +1,25 @@
 const express = require('express')
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const app = express()
+const app = express();
+const path = require('path');
 const PORT = process.env.PORT || 4000;
 
-app.use(cors());
-// app.use(cors({
-//   origin: 'http://localhost:5173',
-// }));
+const allowedOrigins = ['https://admin-dashboard-e-commerce.netlify.app/', 'https://e-commerce-baroque-clone.netlify.app/'];
+
+// CORS options ko configure karen
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 
 var bodyParser = require('body-parser')
@@ -16,7 +28,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.use('/uploads', express.static('uploads'));
+// app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.set('secretKey', "e-commerce");
 
