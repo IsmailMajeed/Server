@@ -34,7 +34,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.set('secretKey', "e-commerce");
 
-require('./Env/Connection')
+require('./connection')
 
 const productRoute = require('./Routes/Products')
 
